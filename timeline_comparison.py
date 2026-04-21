@@ -170,8 +170,10 @@ class TimelineComparison(Scene):
             # Note text
             nlabel = Text(
                 m["note"],
-                font_size=16,
+                font="Georgia",
+                font_size=18,
                 color=MUTED,
+                slant=ITALIC,
             )
             note_labels.append(nlabel)
 
@@ -255,23 +257,23 @@ class TimelineComparison(Scene):
         self.wait(1.0)
 
         # ── Final callout ──
-        callout_bg = Rectangle(
-            width=8,
-            height=0.7,
-            fill_color=GREEN_PALE,
-            fill_opacity=1,
-            stroke_color=GREEN_LIGHT,
-            stroke_width=1.5,
-        )
-        callout_bg.to_edge(DOWN, buff=0.3)
-
         callout_text = Text(
             "Edge computing: 40× faster than cloud, 50× faster than culture",
             font_size=20,
             color=GREEN,
             weight=BOLD,
         )
-        callout_text.move_to(callout_bg.get_center())
+        callout_text.to_edge(DOWN, buff=0.55)
+
+        callout_bg = SurroundingRectangle(
+            callout_text,
+            buff=0.25,
+            fill_color=GREEN_PALE,
+            fill_opacity=1,
+            stroke_color=GREEN_LIGHT,
+            stroke_width=1.5,
+            corner_radius=0.05,
+        )
 
         self.play(
             FadeIn(callout_bg, shift=UP * 0.15),
